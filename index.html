@@ -1,0 +1,201 @@
+<head>
+    <title>มาแต่งโคลงสี่สุภาพกันเถอะ</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script>
+
+        let _AllInput;
+        let _test = "เสียง ลือ เสียง เล่า อ้าง อัน ใด พี่ เอย\nเสียง ย่อม ยอ ยศ ใคร ทั่ว หล้า\nสอง เขือ พี่ หลับ ไหล ลืม ตื่น ฤๅ พี่\nสอง พี่ คิด เอง อ้า อย่า ใด้ ถาม เผือ";
+
+        $(document).ready(function () {
+
+            _AllInput = $(".k-input");
+
+            $.each(_AllInput, function (index, value) {
+                let item = $(value);
+                item.val(index);
+
+            });
+
+            // check input key
+            $(".k-input").keypress(function (event) {
+
+                // console.log("event.which=", event.which);
+
+                // press enter or space
+                if (event.which == 13 || event.which == 32) {
+                    focusNextControl(this);
+                    event.preventDefault();
+                }
+                else if (event.which == 3656) //ไม้เอก
+                {
+                    if (!($(this).parent().hasClass("k-1") || $(this).parent().hasClass("k-12")))
+                        event.preventDefault();
+                }
+                else if (event.which == 3657) //ไม้โท
+                {
+                    if (!($(this).parent().hasClass("k-2") || $(this).parent().hasClass("k-12")))
+                        event.preventDefault();
+                }
+                else if (event.which == 3658 || event.which == 3683) //ไม้ตรี, จัตวา
+                {
+                    event.preventDefault();
+                }
+
+            });
+
+            // select all when focus
+            $(".k-input").focus(function () {
+                $(this).select();
+            });
+
+            load(_test)
+
+        });
+
+        function focusNextControl(current) {
+            var index = _AllInput.index(current);
+            _AllInput.eq(index + 1).focus();
+
+        }
+
+        function save() {
+            let result = "";
+            $.each(_AllInput, function (index, value) {
+                let item = $(value);
+
+                if (item.hasClass('k-space'))
+                    result += " ";
+
+                if (item.hasClass('k-new-line'))
+                    result += "\n";
+
+
+                result += item.val().trim();
+                result = result.trim();
+
+            });
+
+            console.log(result);
+        }
+
+        function load(poem) {
+
+            // replace new line with space
+            poem = poem.replace(/\n/g, " ");
+            // console.log(poem);
+
+            // split word
+            let words = poem.split(" ");
+
+            // fill word
+            $.each(_AllInput, function (index, item) {
+                if (words.length > index)
+                    $(item).val(words[index]);
+                else
+                    $(item).val("");
+
+            });
+
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="container pt-3">
+
+        <div class="row k-row">
+
+            <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+            <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+            <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+            <div class="k-col col-1 k-1 k-12"><input class="k-input" type="text" /></div>
+            <div class="k-col col-1 k-2 k-12"><input class="k-input" type="text" /></div>
+
+            <!-- space -->
+            <div class="col-1"></div>
+            <div class="col-1"></div>
+
+            <div class="k-col col-1 "><input class="k-input k-space" type="text" /></div>
+            <div class="k-col col-1 "><input class="k-input j-1" type="text" /></div>
+            <!-- space -->
+            <div class="k-col col-1"></div>
+            <div class="k-col col-1 "><input class="k-input k-alt k-space k-12" type="text" /></div>
+            <div class="k-col col-1 "><input class="k-input k-alt k-12" type="text" /></div>
+
+
+        </div>
+
+        <div class="row k-row">
+
+            <div class="k-col col-1 "><input class="k-input k-new-line" type="text" /></div>
+            <div class="k-col col-1 k-1 "><input class="k-input" type="text" /></div>
+            <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+            <div class="k-col col-1"><input class="k-input" type="text" /></div>
+            <div class="k-col col-1"><input class="k-input j-1" type="text" /></div>
+
+            <!-- space -->
+            <div class="col-1"></div>
+            <div class="col-1"></div>
+
+            <div class="k-col col-1 k-1 k-12"><input class="k-input  k-space" type="text" /></div>
+            <div class="k-col col-1 k-2 k-12"><input class="k-input j-2" type="text" /></div>
+
+
+        </div>
+
+        <div class="row k-row">
+
+            <div class="k-col col-1 "><input class="k-input k-new-line" type="text" /></div>
+            <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+            <div class="k-col col-1 k-1"><input class="k-input" type="text" /></div>
+            <div class="k-col col-1"><input class="k-input" type="text" /></div>
+            <div class="k-col col-1"><input class="k-input j-1" type="text" /></div>
+
+            <!-- space -->
+            <div class="col-1"></div>
+            <div class="col-1"></div>
+
+            <div class="k-col col-1 "><input class="k-input k-space" type="text" /></div>
+            <div class="k-col col-1 k-1"><input class="k-input" type="text" /></div>
+            <!-- space -->
+            <div class="k-col col-1"></div>
+            <div class="k-col col-1 "><input class="k-input k-alt k-space k-12" type="text" /></div>
+            <div class="k-col col-1 "><input class="k-input k-alt k-12" type="text" /></div>
+
+
+        </div>
+
+
+        <div class="row k-row">
+
+            <div class="k-col col-1 "><input class="k-input k-new-line" type="text" /></div>
+            <div class="k-col col-1 k-1 "><input class="k-input" type="text" /></div>
+            <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+            <div class="k-col col-1"><input class="k-input" type="text" /></div>
+            <div class="k-col col-1 k-2"><input class="k-input j-2" type="text" /></div>
+
+            <!-- space -->
+            <div class="col-1"></div>
+            <div class="col-1"></div>
+
+            <div class="k-col col-1 k-1 k-12"><input class="k-input k-space" type="text" /></div>
+            <div class="k-col col-1 k-2 k-12"><input class="k-input" type="text" /></div>
+            <!-- space -->
+            <div class="k-col col-1"></div>
+            <div class="k-col col-1 "><input class="k-input" type="text k-space" /></div>
+            <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+
+
+        </div>
+
+        <div>
+            <input type="button" value="บันทึก" onclick="save()" />
+        </div>
+
+
+    </div>
+</body>

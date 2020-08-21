@@ -1,0 +1,62 @@
+.k-input {
+ width: 100%;
+ border: solid 1px #888888;
+ text-align: center;
+}
+
+.k-row {
+ padding-top: 15px;
+ padding-bottom: 15px;
+}
+
+.k-col{
+ padding-left: 2px;
+ padding-right: 2px;
+}
+
+.k-1::before, .k-2::before{
+ position: absolute;
+ margin-top: -22px;
+ text-align: center;
+ color: #cccccc;
+ width: 100%;
+ text-align: center;
+}
+
+.k-1::before
+{
+ content: "เอก";
+}
+
+.k-2::before
+{
+ content: "โท";
+}
+
+.k-alt{
+ border: solid 1px #cccccc;
+}
+
+.j-1
+{
+ background-color: #dde2ff;
+}
+
+.j-2
+{
+ background-color: #f5d2de;
+}
+
+.k-1 .k-input, .k-2 .k-input{
+    border-width: 2px;
+}
+
+.k-1 .k-input{
+    border-color: #818ec7;
+     
+}
+
+.k-2 .k-input{
+    border-color: #d17c83;
+     
+}
