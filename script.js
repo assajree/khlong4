@@ -80,7 +80,7 @@ function focusNextControl(current) {
 }
 
 function save() {
-    console.log('save', $("#main-part .k-section .k-input"));
+    // console.log('save', $("#main-part .k-section .k-input"));
 
     let result = "";
     $.each($("#main-part .k-section .k-input"), function (index, value) {
@@ -109,7 +109,7 @@ function save() {
 
     });
 
-    console.log(result);
+    // console.log(result);
     $("#result").text(result);
 }
 
@@ -144,4 +144,13 @@ function add() {
     //     item.val(index);
 
     // });
+}
+
+function remove(element) {
+
+    // console.log('remove', element);
+    if(confirm("ต้องการลบบทนี้หรือไม่?"))
+    {
+        $(element).parent().parent().parent().parent().remove();
+    }
 }

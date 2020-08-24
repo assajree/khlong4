@@ -102,6 +102,31 @@ a {
     font-weight: bold;
 }
 
+
+.button-alt {
+    color      : #EFE417;
+    border     : none;
+    background : #142285;
+    padding    : 5px 10px;
+    font-weight: bold;
+}
+
+.button-red {
+    color      : #EFE417;
+    border     : none;
+    background : #142285;
+    padding    : 0px 8px;
+    font-weight: bold;
+}
+
+.button-red:hover{
+    background : #ff0000;
+}
+
+.button-green:hover{
+    background : #32a852;
+}
+
 .section-separator {
     height       : 1px;
     background   : #EFE417;
@@ -115,4 +140,8 @@ a {
     width         : 20px;
     height        : 20px;
     vertical-align: middle;
+}
+
+.no-padding {
+    padding: 0;
 }
