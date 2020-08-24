@@ -4,200 +4,287 @@
     <link rel="stylesheet" href="style.css">
     <script src="jquery-3.5.1.min.js"></script>
     <script src="bootstrap.min.js"></script>
-    <script>
-
-        let _AllInput;
-        let _test = "เสียง ลือ เสียง เล่า อ้าง อัน ใด พี่ เอย\nเสียง ย่อม ยอ ยศ ใคร ทั่ว หล้า\nสอง เขือ พี่ หลับ ไหล ลืม ตื่น ฤๅ พี่\nสอง พี่ คิด เอง อ้า อย่า ใด้ ถาม เผือ";
-
-        $(document).ready(function () {
-
-            _AllInput = $(".k-input");
-
-            $.each(_AllInput, function (index, value) {
-                let item = $(value);
-                item.val(index);
-
-            });
-
-            // check input key
-            $(".k-input").keypress(function (event) {
-
-                // console.log("event.which=", event.which);
-
-                // press enter or space
-                if (event.which == 13 || event.which == 32) {
-                    focusNextControl(this);
-                    event.preventDefault();
-                }
-                else if (event.which == 3656) //ไม้เอก
-                {
-                    if (!($(this).parent().hasClass("k-1") || $(this).parent().hasClass("k-12")))
-                        event.preventDefault();
-                }
-                else if (event.which == 3657) //ไม้โท
-                {
-                    if (!($(this).parent().hasClass("k-2") || $(this).parent().hasClass("k-12")))
-                        event.preventDefault();
-                }
-                else if (event.which == 3658 || event.which == 3683) //ไม้ตรี, จัตวา
-                {
-                    event.preventDefault();
-                }
-
-            });
-
-            // select all when focus
-            $(".k-input").focus(function () {
-                $(this).select();
-            });
-
-            load(_test)
-
-        });
-
-        function focusNextControl(current) {
-            var index = _AllInput.index(current);
-            _AllInput.eq(index + 1).focus();
-
-        }
-
-        function save() {
-            let result = "";
-            $.each(_AllInput, function (index, value) {
-                let item = $(value);
-
-                if (item.hasClass('k-space'))
-                    result += " ";
-
-                if (item.hasClass('k-new-line'))
-                    result += "\n";
-
-
-                result += item.val().trim();
-                result = result.trim();
-
-            });
-
-            console.log(result);
-            $("#result").text(result);
-        }
-
-        function load(poem) {
-
-            // replace new line with space
-            poem = poem.replace(/\n/g, " ");
-            // console.log(poem);
-
-            // split word
-            let words = poem.split(" ");
-
-            // fill word
-            $.each(_AllInput, function (index, item) {
-                if (words.length > index)
-                    $(item).val(words[index]);
-                else
-                    $(item).val("");
-
-            });
-
-        }
-
-    </script>
+    <script src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Srisakdi:wght@700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container pt-3">
+    <div class="container pt-4 pb-4">
 
-        <div class="row k-row">
+        <div id="main-part">
+            <div class="k-section">
 
-            <div class="k-col col-1 "><input class="k-input" type="text" /></div>
-            <div class="k-col col-1 "><input class="k-input" type="text" /></div>
-            <div class="k-col col-1 "><input class="k-input" type="text" /></div>
-            <div class="k-col col-1 k-1 k-12"><input class="k-input" type="text" /></div>
-            <div class="k-col col-1 k-2 k-12"><input class="k-input" type="text" /></div>
 
-            <!-- space -->
-            <div class="col-1"></div>
-            <div class="col-1"></div>
 
-            <div class="k-col col-1 "><input class="k-input k-space" type="text" /></div>
-            <div class="k-col col-1 "><input class="k-input j-1" type="text" /></div>
-            <!-- space -->
-            <div class="k-col col-1"></div>
-            <div class="k-col col-1 "><input class="k-input k-alt k-space k-12" type="text" /></div>
-            <div class="k-col col-1 "><input class="k-input k-alt k-12" type="text" /></div>
+                <div class="row k-row">
 
+                    <div class="k-col col-1 "><input class="k-input  k-first" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1 k-1 k-12"><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1 k-2 k-12"><input class="k-input" type="text" /></div>
+
+                    <!-- space -->
+                    <div class="col-1"></div>
+                    <div class="col-1"></div>
+
+                    <div class="k-col col-1 "><input class="k-input k-space-2" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input j-1" type="text" /></div>
+                    <!-- space -->
+                    <!-- <div class="k-col col-1"></div> -->
+                    <div class="k-col col-1 ml-4"><input class="k-input k-alt k-space k-12" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input k-alt k-12" type="text" /></div>
+
+
+                </div>
+
+                <div class="row k-row">
+
+                    <div class="k-col col-1 "><input class="k-input k-new-line" type="text" /></div>
+                    <div class="k-col col-1 k-1 "><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1"><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1"><input class="k-input j-1" type="text" /></div>
+
+                    <!-- space -->
+                    <div class="col-1"></div>
+                    <div class="col-1"></div>
+
+                    <div class="k-col col-1 k-1 k-12"><input class="k-input k-space-2" type="text" /></div>
+                    <div class="k-col col-1 k-2 k-12"><input class="k-input j-2" type="text" /></div>
+
+
+                </div>
+
+                <div class="row k-row">
+
+                    <div class="k-col col-1 "><input class="k-input k-new-line" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1 k-1"><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1"><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1"><input class="k-input j-1" type="text" /></div>
+
+                    <!-- space -->
+                    <div class="col-1"></div>
+                    <div class="col-1"></div>
+
+                    <div class="k-col col-1 "><input class="k-input k-space-2" type="text" /></div>
+                    <div class="k-col col-1 k-1"><input class="k-input" type="text" /></div>
+                    <!-- space -->
+                    <!-- <div class="k-col col-1"></div> -->
+                    <div class="k-col col-1 ml-4"><input class="k-input k-alt k-space k-12" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input k-alt k-12" type="text" /></div>
+
+
+                </div>
+
+
+                <div class="row k-row">
+
+                    <div class="k-col col-1 "><input class="k-input k-new-line" type="text" /></div>
+                    <div class="k-col col-1 k-1 "><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1"><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1 k-2"><input class="k-input j-2" type="text" /></div>
+
+                    <!-- space -->
+                    <div class="col-1"></div>
+                    <div class="col-1"></div>
+
+                    <div class="k-col col-1 k-1 k-12"><input class="k-input k-space-2" type="text" /></div>
+                    <div class="k-col col-1 k-2 k-12"><input class="k-input j-3-input" type="text" /></div>
+                    <!-- space -->
+                    <!-- <div class="k-col col-1"></div> -->
+                    <!-- <div class="k-col col-1 "><input class="k-input k-space" type="text" /></div> -->
+                    <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1"><input class="k-input j-3-input j-3-alt  k-last" type="text" /></div>
+
+
+                </div>
+
+            </div>
 
         </div>
 
-        <div class="row k-row">
+        <!-- part 2 -->
+        <div id="part-2" class="d-none">
+            <div class="row section-separator"></div>
+            <div class="k-section">
+                <div class="row k-row">
 
-            <div class="k-col col-1 "><input class="k-input k-new-line" type="text" /></div>
-            <div class="k-col col-1 k-1 "><input class="k-input" type="text" /></div>
-            <div class="k-col col-1 "><input class="k-input" type="text" /></div>
-            <div class="k-col col-1"><input class="k-input" type="text" /></div>
-            <div class="k-col col-1"><input class="k-input j-1" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input j-3 k-new-line k-first" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input j-3" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input j-3" type="text" /></div>
+                    <div class="k-col col-1 k-1 k-12"><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1 k-2 k-12"><input class="k-input" type="text" /></div>
 
-            <!-- space -->
-            <div class="col-1"></div>
-            <div class="col-1"></div>
+                    <!-- space -->
+                    <div class="col-1"></div>
+                    <div class="col-1"></div>
 
-            <div class="k-col col-1 k-1 k-12"><input class="k-input  k-space" type="text" /></div>
-            <div class="k-col col-1 k-2 k-12"><input class="k-input j-2" type="text" /></div>
-
-
-        </div>
-
-        <div class="row k-row">
-
-            <div class="k-col col-1 "><input class="k-input k-new-line" type="text" /></div>
-            <div class="k-col col-1 "><input class="k-input" type="text" /></div>
-            <div class="k-col col-1 k-1"><input class="k-input" type="text" /></div>
-            <div class="k-col col-1"><input class="k-input" type="text" /></div>
-            <div class="k-col col-1"><input class="k-input j-1" type="text" /></div>
-
-            <!-- space -->
-            <div class="col-1"></div>
-            <div class="col-1"></div>
-
-            <div class="k-col col-1 "><input class="k-input k-space" type="text" /></div>
-            <div class="k-col col-1 k-1"><input class="k-input" type="text" /></div>
-            <!-- space -->
-            <div class="k-col col-1"></div>
-            <div class="k-col col-1 "><input class="k-input k-alt k-space k-12" type="text" /></div>
-            <div class="k-col col-1 "><input class="k-input k-alt k-12" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input k-space-2" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input j-1" type="text" /></div>
+                    <!-- space -->
+                    <!-- <div class="k-col col-1"></div> -->
+                    <div class="k-col col-1 ml-4"><input class="k-input k-alt k-space k-12" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input k-alt k-12" type="text" /></div>
 
 
-        </div>
+                </div>
+
+                <div class="row k-row">
+
+                    <div class="k-col col-1 "><input class="k-input k-new-line" type="text" /></div>
+                    <div class="k-col col-1 k-1 "><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1"><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1"><input class="k-input j-1" type="text" /></div>
+
+                    <!-- space -->
+                    <div class="col-1"></div>
+                    <div class="col-1"></div>
+
+                    <div class="k-col col-1 k-1 k-12"><input class="k-input k-space-2" type="text" /></div>
+                    <div class="k-col col-1 k-2 k-12"><input class="k-input j-2" type="text" /></div>
 
 
-        <div class="row k-row">
+                </div>
 
-            <div class="k-col col-1 "><input class="k-input k-new-line" type="text" /></div>
-            <div class="k-col col-1 k-1 "><input class="k-input" type="text" /></div>
-            <div class="k-col col-1 "><input class="k-input" type="text" /></div>
-            <div class="k-col col-1"><input class="k-input" type="text" /></div>
-            <div class="k-col col-1 k-2"><input class="k-input j-2" type="text" /></div>
+                <div class="row k-row">
 
-            <!-- space -->
-            <div class="col-1"></div>
-            <div class="col-1"></div>
+                    <div class="k-col col-1 "><input class="k-input k-new-line" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1 k-1"><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1"><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1"><input class="k-input j-1" type="text" /></div>
 
-            <div class="k-col col-1 k-1 k-12"><input class="k-input k-space" type="text" /></div>
-            <div class="k-col col-1 k-2 k-12"><input class="k-input" type="text" /></div>
-            <!-- space -->
-            <div class="k-col col-1"></div>
-            <div class="k-col col-1 "><input class="k-input" type="text k-space" /></div>
-            <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+                    <!-- space -->
+                    <div class="col-1"></div>
+                    <div class="col-1"></div>
+
+                    <div class="k-col col-1 "><input class="k-input k-space-2" type="text" /></div>
+                    <div class="k-col col-1 k-1"><input class="k-input" type="text" /></div>
+                    <!-- space -->
+                    <!-- <div class="k-col col-1"></div> -->
+                    <div class="k-col col-1 ml-4"><input class="k-input k-alt k-space k-12" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input k-alt k-12" type="text" /></div>
 
 
+                </div>
+
+
+                <div class="row k-row">
+
+                    <div class="k-col col-1 "><input class="k-input k-new-line" type="text" /></div>
+                    <div class="k-col col-1 k-1 "><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1"><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1 k-2"><input class="k-input j-2" type="text" /></div>
+
+                    <!-- space -->
+                    <div class="col-1"></div>
+                    <div class="col-1"></div>
+
+                    <div class="k-col col-1 k-1 k-12"><input class="k-input k-space-2" type="text" /></div>
+                    <div class="k-col col-1 k-2 k-12"><input class="k-input j-3-input" type="text" /></div>
+                    <!-- space -->
+                    <!-- <div class="k-col col-1"></div> -->
+                    <!-- <div class="k-col col-1 "><input class="k-input k-space" type="text" /></div> -->
+                    <div class="k-col col-1 "><input class="k-input" type="text" /></div>
+                    <div class="k-col col-1"><input class="k-input j-3-input k-last" type="text" /></div>
+
+
+                </div>
+
+            </div>
         </div>
 
         <div class="text-center">
-            <input type="button" value="บันทึก" onclick="save()" />
+            <input type="button" class="button" value="เพิ่มบท" onclick="add()" />
+            <input type="button" class="button" value="จบ" onclick="save()" />
         </div>
 
         <pre id="result"></pre>
+
+        <div id="remark">
+            <div class="row section-separator"></div>
+
+            <div class="pt-4"><u>หมายเหตุ</u></div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-5">
+                    <div><span class="k-1 k-block"></span> = เสียงเอก</div>
+                    <div><span class="k-2 k-block"></span> = เสียงโท</div>
+                    <div><span class="k-input k-block"></span> = คำสุภาพ</div>
+                    <div><span class="k-alt k-block"></span> = คำสร้อย</div>
+                </div>
+                <div class="col-5">
+                    <div><span class="j-1 k-block"></span> = สัมผัส ๑</div>
+                    <div><span class="j-2 k-block"></span> = สัมผัส ๒</div>
+                    <div><span class="j-3-alt k-block"></span> = สัมผัสระหว่างบท</div>
+                </div>
+            </div>
+
+            <div class="pt-4"><u>เพิ่มเติม</u></div>
+
+            <ul>
+                <li>
+                    <b>คำสุภาพ</b>
+                    หรือ เสาวภาพ หมายถึงคำที่ไม่มีรูปวรรณยุกต์</li>
+                <li>
+                    <b>คำสร้อย</b>
+                    คือ คำที่แต่งท้ายบาทเพื่อทำให้ได้ใจความครบถ้วน ถ้าโคลงบาทใดได้ความครบถ้วนแล้ว
+                    ก็ไม่ต้องเติมคำสร้อย
+                </li>
+
+                <li>
+                    <b>คำสร้อยต้องมีแห่งละ ๒ คำเสมอ</b>
+                    คำแรกเป็นคำสุภาพที่ต้องการเสริมความให้สมบูรณ์
+                    ส่วนคำหลังมักลงท้ายด้วยคำต่อไปนี้
+                    พ่อ แม่ พี่ รา แล เลย เอย นา นอ เนอ ฤๅ ฮา แฮ เฮย และมีอีกคำหนึ่งที่พบในโคลงโบราณ คือ คำว่า บารนี
+                    ซึ่งใช้คำสร้อยได้ครบพยางค์โดยไม่ต้องเติมคำอื่น
+                </li>
+
+                <li>
+                    <b>คำเอก-คำโท</b>
+                    ที่อยู่ติดกันอาจสลับที่กันได้ในบางครั้ง
+                    และอนุโลมให้ใช้คำตายแทนคำเอกในกรณีที่หาคำเอกไม่ได้
+                </li>
+
+                <li>
+                    <b>คำเอกโทษ-คำโทโทษ</b>
+                    สามารถใช้คำพ้องเสียงที่มีวรรณยุกต์ตรงตามตำแหน่งที่บังคับได้ แต่อาจทำมห้ความหมายผิดเพี้ยนไป เช่น ใช้
+                    "เหล้า" แทน
+                    "เล่า"
+                    ในตำแหน่งวรรณยุกต์โท หรือใช้ "ท่า" แทน "ถ้า" ในตำแหน่งวรรณยุกต์เอก
+                </li>
+
+                <li>
+                    <b>สัมผัสระหว่างบท</b>
+                    คำสุดท้ายของบทต้นสัมผัสกับคำที่ 1 หรือคำที่ 2 หรือคำที่ 3 ของบทต่อ ๆ ไป
+                    จะทำให้มีความไพเราะยิ่งขึ้น
+                </li>
+            </ul>
+
+            <div class="pt-3"><u>อ้างอิง</u></div>
+            <ul>
+                <li>
+                    <a
+                        href="https://th.wikipedia.org/wiki/%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B8%87%E0%B8%AA%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%A0%E0%B8%B2%E0%B8%9E">
+                        วิกิพีเดีย : โคลงสี่สุภาพ
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.gotoknow.org/posts/658737">GotoKnow : โคลงสี่สุภาพ</a>
+                </li>
+                <li>
+                    <a href="https://sites.google.com/site/khorngsisuphaphkeasemd/phaenphang-kholng-si-suphaph">
+                        โคลงสี่สุภาพเกาะเสม็ด
+                    </a>
+                </li>
+            </ul>
+        </div>
 
 
     </div>

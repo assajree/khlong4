@@ -1,62 +1,118 @@
-.k-input {
- width: 100%;
- border: solid 1px #888888;
- text-align: center;
+body {
+    background: #060E50;
+}
+
+*,
+a {
+    color: #ccc;
+}
+
+#result {
+    font-family: 'Srisakdi', cursive;
+    color      : #FFF42A;
+    margin     : auto;
+    width      : fit-content;
+    margin-top : 20px;
+    font-size  : 26pt;
+}
+
+.k-input,
+.k-section:last-child .k-row .k-col .j-3-alt {
+    width     : 100%;
+    border    : solid 1px #888888;
+    text-align: center;
+    background: #0C176D;
+    color     : #ffffff;
 }
 
 .k-row {
- padding-top: 15px;
- padding-bottom: 15px;
+    padding-top   : 15px;
+    padding-bottom: 15px;
 }
 
-.k-col{
- padding-left: 2px;
- padding-right: 2px;
+.k-col {
+    padding-left : 2px;
+    padding-right: 2px;
 }
 
-.k-1::before, .k-2::before{
- position: absolute;
- margin-top: -22px;
- text-align: center;
- color: #cccccc;
- width: 100%;
- text-align: center;
+.k-col.k-1::before,
+.k-col.k-2::before {
+    position  : absolute;
+    margin-top: -22px;
+    text-align: center;
+    color     : #aaa;
+    width     : 100%;
+    text-align: center;
 }
 
-.k-1::before
-{
- content: "เอก";
+.k-col.k-1::before {
+    content: "เอก";
 }
 
-.k-2::before
-{
- content: "โท";
+.k-col.k-2::before {
+    content: "โท";
 }
 
-.k-alt{
- border: solid 1px #cccccc;
+.k-alt {
+    border          : solid 1px #666666;
+    background-color: #060E50;
 }
 
-.j-1
-{
- background-color: #dde2ff;
+.j-1 {
+    background-color: #395100;
 }
 
-.j-2
-{
- background-color: #f5d2de;
+.j-2 {
+    background-color: #805300;
 }
 
-.k-1 .k-input, .k-2 .k-input{
-    border-width: 2px;
+.j-3 {
+    border-style: dashed;
 }
 
-.k-1 .k-input{
-    border-color: #818ec7;
-     
+.j-3,
+.j-3-alt {
+    background-color: #6D0044;
 }
 
-.k-2 .k-input{
-    border-color: #d17c83;
-     
+.k-1 .k-input,
+.k-2 .k-input,
+.k-block.k-1,
+.k-block.k-2 {
+    border: solid 2px;
+}
+
+.k-block.k-1,
+.k-1 .k-input {
+    border-color: #99C2EF;
+
+}
+
+.k-block.k-2,
+.k-2 .k-input {
+    border-color: #F693D6;
+
+}
+
+.button {
+    background : #EFE417;
+    border     : none;
+    color      : #142285;
+    padding    : 5px 20px;
+    font-weight: bold;
+}
+
+.section-separator {
+    height       : 1px;
+    background   : #EFE417;
+    margin-top   : 5px;
+    margin-bottom: 20px;
+}
+
+.k-block {
+    border        : solid 1px #888888;
+    display       : inline-block;
+    width         : 20px;
+    height        : 20px;
+    vertical-align: middle;
 }
